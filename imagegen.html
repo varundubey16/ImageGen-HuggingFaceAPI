@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang=”en”>
 <head>
 <meta charset=”UTF-8">
 <meta name=”viewport” content=”width=device-width, initial-scale=1.0">
@@ -7,188 +5,186 @@
 <link rel=”icon” type=”image/x-icon” href=”#”>
 <link rel=”stylesheet” href=”https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel=”stylesheet” href=”https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-<style>
-body {
-font-family: ‘Poppins’, sans-serif;
-color: #333;
-margin: 0;
-padding: 0;
-animation: changeBackground 15s infinite linear;
-}
-
-@keyframes changeBackground {
-0% { background-color: #ff0000; }
-14.28% { background-color: #ffa500; }
-28.56% { background-color: #ffff00; }
-42.84% { background-color: #00ff00; }
-57.12% { background-color: #0000ff; }
-71.4% { background-color: #4b0082; }
-85.68% { background-color: #ee82ee; }
-100% { background-color: #ff0000; }
-}
-
-.container {
-background: #fff;
-padding: 40px;
-border-radius: 15px;
-box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-max-width: 800px;
-width: 100%;
-text-align: center;
-animation: fadeIn 1s ease-in-out;
-position: relative;
-z-index: 1;
-margin-top: 30px;
-}
-
-@keyframes fadeIn {
-from {
-opacity: 0;
-transform: translateY(-20px);
-}
-to {
-opacity: 1;
-transform: translateY(0);
-}
-}
-
-h1 {
-font-size: 2.5rem;
-margin-bottom: 20px;
-color: #2c3e50;
-animation: textGlow 4s infinite alternate;
-}
-
-@keyframes textGlow {
-0% { text-shadow: 0 0 10px #3498db; }
-100% { text-shadow: 0 0 20px #2980b9; }
-}
-
-.form-group {
-margin-bottom: 1.5rem;
-text-align: left;
-}
-
-.form-group label {
-font-weight: bold;
-margin-bottom: 5px;
-display: block;
-}
-
-.form-control {
-border: 2px solid #ddd;
-border-radius: 5px;
-padding: 10px;
-transition: all 0.3s ease;
-}
-
-.form-control:focus {
-border-color: #2c3e50;
-box-shadow: 0 0 8px rgba(44, 62, 80, 0.2);
-}
-
-.btn-primary {
-background-color: #3498db;
-border-color: #3498db;
-padding: 10px 20px;
-font-size: 1.1rem;
-border-radius: 5px;
-transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.btn-primary:hover {
-background-color: #2980b9;
-transform: translateY(-2px);
-}
-
-.messages {
-margin-top: 20px;
-color: #e74c3c;
-font-weight: bold;
-}
-
-.generated-images {
-margin-top: 30px;
-padding: 10px;
-background-color: #f2f2f2;
-border-radius: 10px;
-display: flex;
-flex-wrap: wrap;
-gap: 20px;
-justify-content: center;
-overflow-y: auto;
-max-height: calc(100vh — 300px);
-}
-
-.generated-images .image-container {
-position: relative;
-width: 100%;
-max-width: 300px;
-overflow: hidden;
-border-radius: 10px;
-box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.generated-images img {
-width: 100%;
-height: auto;
-transition: transform 0.3s ease;
-}
-
-.generated-images .download-btn {
-position: absolute;
-bottom: 10px;
-right: 10px;
-background-color: #e74c3c;
-color: #fff;
-border: none;
-border-radius: 50%;
-width: 40px;
-height: 40px;
-font-size: 18px;
-display: flex;
-align-items: center;
-justify-content: center;
-opacity: 0;
-transition: opacity 0.3s ease;
-}
-
-.generated-images .download-btn:hover {
-background-color: #c0392b;
-}
-
-.generated-images .image-container:hover .download-btn {
-opacity: 1;
-}
-
-.loader {
-display: none;
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: rgba(0, 0, 0, 0.5);
-align-items: center;
-justify-content: center;
-color: #fff;
-font-size: 24px;
-z-index: 1000;
-animation: fadeIn 1s ease-in-out;
-}
-
-.loader .spinner-border {
-color: #fff;
-margin-right: 10px;
-}
-</style>
+      <style>
+            body {
+            font-family: ‘Poppins’, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            animation: changeBackground 15s infinite linear;
+            }
+            
+            @keyframes changeBackground {
+            0% { background-color: #ff0000; }
+            14.28% { background-color: #ffa500; }
+            28.56% { background-color: #ffff00; }
+            42.84% { background-color: #00ff00; }
+            57.12% { background-color: #0000ff; }
+            71.4% { background-color: #4b0082; }
+            85.68% { background-color: #ee82ee; }
+            100% { background-color: #ff0000; }
+            }
+            
+            .container {
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+            position: relative;
+            z-index: 1;
+            margin-top: 30px;
+            }
+            
+            @keyframes fadeIn {
+            from {
+            opacity: 0;
+            transform: translateY(-20px);
+            }
+            to {
+            opacity: 1;
+            transform: translateY(0);
+            }
+            }
+            
+            h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            animation: textGlow 4s infinite alternate;
+            }
+            
+            @keyframes textGlow {
+            0% { text-shadow: 0 0 10px #3498db; }
+            100% { text-shadow: 0 0 20px #2980b9; }
+            }
+            
+            .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+            }
+            
+            .form-group label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+            }
+            
+            .form-control {
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            transition: all 0.3s ease;
+            }
+            
+            .form-control:focus {
+            border-color: #2c3e50;
+            box-shadow: 0 0 8px rgba(44, 62, 80, 0.2);
+            }
+            
+            .btn-primary {
+            background-color: #3498db;
+            border-color: #3498db;
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            }
+            
+            .btn-primary:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            }
+            
+            .messages {
+            margin-top: 20px;
+            color: #e74c3c;
+            font-weight: bold;
+            }
+            
+            .generated-images {
+            margin-top: 30px;
+            padding: 10px;
+            background-color: #f2f2f2;
+            border-radius: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            overflow-y: auto;
+            max-height: calc(100vh — 300px);
+            }
+            
+            .generated-images .image-container {
+            position: relative;
+            width: 100%;
+            max-width: 300px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            
+            .generated-images img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+            }
+            
+            .generated-images .download-btn {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            }
+            
+            .generated-images .download-btn:hover {
+            background-color: #c0392b;
+            }
+            
+            .generated-images .image-container:hover .download-btn {
+            opacity: 1;
+            }
+            
+            .loader {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 24px;
+            z-index: 1000;
+            animation: fadeIn 1s ease-in-out;
+            }
+            
+            .loader .spinner-border {
+            color: #fff;
+            margin-right: 10px;
+            }
+     </style>
 </head>
 <body>
-
 <div class=”container animate__animated animate__fadeIn”>
 <h1 class=”animate__animated animate__fadeInDown”>Image Generator using Hugging Face API</h1>
-
 <form id=”generate-form” class=”mb-5">
 <div class=”form-group animate__animated animate__fadeInLeft”>
 <label for=”prompt”>Enter your Image Prompt</label>
@@ -201,15 +197,16 @@ margin-right: 10px;
 <button type=”submit” class=”btn btn-primary btn-block animate__animated animate__zoomIn”>Generate Image(s)</button>
 </form>
 
+
+
+  
 <div class=”messages animate__animated animate__fadeInUp”>
 <p>1. This model is called via an API.</p>
 <p>2. Each prompt is limited to a maximum of 4 images.</p>
 <p>3. Generated images might not always match your expectations.</p>
 </div>
-
 <div id=”images” class=”row generated-images animate__animated animate__fadeInUp”></div>
 </div>
-
 <div class=”loader” id=”loader”>
 <div style=”text-align: center;”>
 <div class=”spinner-border text-light” role=”status”>
@@ -218,7 +215,6 @@ margin-right: 10px;
 <span>Generating Image(s)…</span>
 </div>
 </div>
-
 <script src=”https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src=”https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
 <script src=”https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -233,11 +229,9 @@ method: “POST”,
 body: JSON.stringify(data),
 }
 );
-
 if (!response.ok) {
 throw new Error(`HTTP error! Status: ${response.status}`);
 }
-
 const result = await response.blob();
 return result;
 } catch (error) {
@@ -249,18 +243,13 @@ throw error;
 }
 }
 }
-
 $(document).ready(function() {
 $(‘#generate-form’).on(‘submit’, function(event) {
 event.preventDefault();
-
 var prompt = $(‘#prompt’).val();
 var num_images = $(‘#num_images’).val();
-
 $(‘#images’).empty();
-
 $(‘#loader’).show();
-
 var promises = [];
 for (var i = 0; i < num_images; i++) {
 promises.push(
@@ -279,13 +268,13 @@ console.error(‘Error generating images:’, error);
 })
 );
 }
+  
 
 Promise.all(promises).then(() => {
 $(‘#loader’).hide();
 });
 });
 });
-
 function downloadImage(url) {
 const a = document.createElement(‘a’);
 a.href = url;
@@ -295,5 +284,8 @@ a.click();
 document.body.removeChild(a);
 }
 </script>
+
+
+
 </body>
 </html>
