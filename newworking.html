@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Art Generator VraunZ API Hugging Face test33</title>
+<link rel="icon" type="image/x-icon" href="#">
+<link rel="stylesheet" href="https://bootstrapcdn.com">
+<link rel="stylesheet" href="https://cloudflare.com">
+
+
+  
+<style>
+body{
+font-family:'Poppins',sans-serif;
+color:#333;
+margin:0;
+padding:0;
+animation:changeBackground 15s infinite linear;
+}
+@keyframes changeBackground{
+0%{background:#ff0000;}
+14.28%{background:#ffa500;}
+28.56%{background:#ffff00;}
+42.84%{background:#00ff00;}
+57.12%{background:#0000ff;}
+71.40%{background:#4b0082;}
+85.68%{background:#ee82ee;}
+100%{background:#ff0000;}
+}
+.container{
+background:#fff;
+padding:40px;
+border-radius:15px;
+box-shadow:0 4px 20px rgba(0,0,0,.1);
+max-width:800px;
+width:100%;
+text-align:center;
+animation:fadeIn 1s ease-in-out;
+position:relative;
+z-index:1;
+margin-top:30px;
+}
+/*@keyframes fadeOut{*/ 
+@keyframes fadeIn{
+from{
+  opacity:0;
+  transform:translateY(-20px);
+}
+to{
+  opacity:1;
+  transform:translateY(0);
+}
+}
+h1{
+font-size:2.5rem;
+margin-bottom:20px;
+color:#2c3e50;
+animation:textGlow 4s infinite alternate;
+}
+@keyframes textGlow{
+0%{
+  text-shadow:0 0 10px #3498db;
+}
+100%{
+  text-shadow:0 0 20px #2980b9;
+}
+}
+.form-group{
+margin-bottom:1.5rem;
+text-align:left;
+}
+.form-group label{
+font-weight:bold;
+margin-bottom:5px;
+display:block;
+}
+.formctrl{
+border:2px solid #ddd;
+border-radius:5px;
+padding:10px;
+transition:.3s;
+width: 100%; /*stretcheeeed*/
+}
+.formctrl:focus{
+border-color:#2c3e50;
+box-shadow:0 0 8px rgba(44,62,80,.2);
+outline: none;
+}
+.btn-primary{
+background:#3498db;
+border-color:#3498db;
+padding:10px 20px;
+font-size:1.1rem;
+border-radius:5px;
+transition:.3s;
+}
+.btn-primary:hover{
+background:#2980b9;
+transform:translateY(-2px);
+}
+.messages{
+margin-top:20px;
+color:#e74c3c;
+font-weight:bold;
+}
+.generated-images{
+margin-top:30px;
+padding:10px;
+background:#f2f2f2;
+border-radius:10px;
+display:flex;
+flex-wrap:wrap;
+gap:20px;
+justify-content:center;
+overflow-y:auto;
+max-height:calc(100vh - 300px);
+}
+.generated-images .image-container{
+position:relative;
+width:100%;
+max-width:300px;
+overflow:hidden;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,.1);
+transition:.3s;
+}
+.generated-images img{
+width:100%;
+height:auto;
+transition:.3s;
+}
+.generated-images img:hover{
+transform:scale(1.05);
+}
+.download-btn{
+position:absolute;
+bottom:10px;
+right:10px;
+background:#e74c3c;
+color:#fff;
+border:none;
+border-radius:50%;
+width:40px;
+height:40px;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+opacity:0;
+transition:.3s;
+}
+.download-btn:hover{
+background:#c0392b;
+}
+.image-container:hover .download-btn{
+opacity:1;
+}
+.loader{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.5);
+justify-content:center;
+align-items:center;
+z-index:9999;
+color:#fff;
+}
+.loader .spinner-border{
+margin-right:10px;
+}
+</style>
+
+
+
+</head>
+<body>
+<div class="container animate__animated animate__fadeIn">
+<h1 class="animate__animated animate__fadeInDown">
+ImageGen using Huggingface
+</h1>
+
+
+  
+<form id="genform" class="mb-5">
+<div class="form-group animate__animated animate__fadeInLeft">
+<label for="prompt">
+Enter your Image Prompt
+</label>
+<input
+type="text"
+class="formctrl"
+id="prompt"
+name="prompt"
+required>
+</div>
+<div class="form-group animate__animated animate__fadeInRight">
+<label for="numofimages">
+Select No. of Images
+</label>
+<!--not in old labels-->
+<input
+type="number"
+class="formctrl"
+id="numofimages"
+name="numofimages"
+min="1"
+max="4"
+value="1"
+required>
+</div>
+<button
+type="submit"
+class="btn btn-primary btn-block animate__animated animate__zoomIn">
+Generate Image(s)
+</button>
+</form>
+<div class="messages animate__animated animate__fadeInUp">
+<p>1. This model is called via an API.</p>
+<p>2. Each prompt is limited to a maximum of 4 images.</p>
+<p>3. Generated images might not always match your expectations.</p>
+</div>
+<div id="images"
+class="row generated-images animate__animated animate__fadeInUp">
+</div>
+</div>
+<div class="loader" id="loader">
+<div style="text-align:center;">
+<div class="spinner-border text-light" role="status">
+<span class="sr-only">Loading...</span>
+</div>
+<span>Generating Image(s)...</span>
+</div>
+</div>
+
+
+
+  
+<script src="https://jquery.com"></script>
+<script src="https://cloudflare.com"></script>
+<script src="https://bootstrapcdn.com"></script>
+<script>
+$(document).ready(function() {
+    // newform, lost the old inference
+    $('#genform').on('submit', function(event) {
+        event.preventDefault(); 
+        var prompt = $('#prompt').val();
+        var numofimages = $('#numofimages').val(); 
+        $('#images').empty();
+        $('#loader').css('display', 'flex'); 
+        var count = 0;
+        for (var i = 0; i < numofimages; i++) {
+            fetch("https://huggingface.co", {
+                method: "POST",
+                headers: {
+                    "Authorization": "Bearer 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" 
+                },
+                body: JSON.stringify({ "inputs": prompt })
+            })
+            .then(function(response) {
+                if (!response.ok) {
+                    throw new Error("API call failed with status: " + response.status);
+                }
+                return response.blob();
+            })
+            .then(function(blobby) {
+                var url = URL.createObjectURL(blobby);
+                var htmlString = '<div class="col-md-4 animate__animated animate__zoomIn">' +
+                                 '<div class="image-container">' +
+                                 '<img src="' + url + '" class="img-fluid">' +
+                                 '<button class="download-btn" onclick="downloadimg(\'' + url + '\')">Download</button>' +
+                                 '</div>' +
+                                 '</div>';
+                $('#images').append(htmlString);
+
+              
+                count++;
+                if (count == numofimages) {
+                    $('#loader').hide();
+                }
+            })
+            .catch(function(error) {
+                console.log("Something went wrong!!!!!");
+                console.log(error);
+                
+                count++;
+                if (count == numofimages) {
+                    $('#loader').hide();
+                }
+            });
+        }
+    });
+});
+function downloadimg(url) {
+    var link = document.createElement('a');
+    link.href = url;
+    link.download = 'image.jpg';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+</script>
+</body>
+</html>
