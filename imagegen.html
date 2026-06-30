@@ -208,14 +208,14 @@ required>
       
 </div>
 <div class="form-group animate__animated animate__fadeInRight">
-<label for="num_images">
+<label for="numofimages">
 Select No. of Images
 </label>
 <input
 type="number"
 class="form-control"
-id="num_images"
-name="num_images"
+id="numofimages"
+name="numofimages"
 min="1"
 max="4"
 value="1"
@@ -257,25 +257,25 @@ $(document).ready(function() {
     $('#generate-form').on('submit', function(event) {
         event.preventDefault();//stopreload
         var prompt = $('#prompt').val();
-        var num_images = $('#num_images').val();
+        var numofimages = $('#numofimages').val();
         $('#images').empty();
         $('#loader').show(); 
         var count = 0;
         //one by one
-        for (var i = 0; i < num_images; i++) {
+        for (var i = 0; i < numofimages; i++) {
             //replace previous retry since it was bugging infinitely
             fetch("https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-2-1", {
                 method: "POST",
                 headers: {
-                    "Authorization": "Bearer 73RAVwopBNK5nKXHpFr1dpqM66WVHQePMGBKC4uZUSdaXOcXmckf3HyGRjkA" // pls dnt repalce the word Bearer replace from "HUGG......HERE"
+                    "Authorization": "Bearer 7********************************************************A" // pls dnt repalce the word Bearer replace from 7 to A
                 },
                 body: JSON.stringify({ "inputs": prompt })
             })
             .then(function(response) {
                 return response.blob();
             })
-            .then(function(blobData) {
-                var url = URL.createObjectURL(blobData);
+            .then(function(blobby) {
+                var url = URL.createObjectURL(blobby);
                 //
                 var htmlString = '<div class="col-md-4 animate__animated animate__zoomIn">' +
                                  '<div class="image-container">' +
@@ -286,16 +286,16 @@ $(document).ready(function() {
                 $('#images').append(htmlString);
                 //hide loader
                 count++;
-                if (count == num_images) {
+                if (count == numofimages) {
                     $('#loader').hide();
                 }
             })
             .catch(function(error) {
-                console.log("Something went wrong!");
+                console.log("Something went wrong!!!!!");
                 console.log(error);
                 
                 count++;
-                if (count == num_images) {
+                if (count == numofimages) {
                     $('#loader').hide();
                 }
             });
