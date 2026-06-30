@@ -190,7 +190,7 @@ margin-right:10px;
 <body>
 <div class="container animate__animated animate__fadeIn">
 <h1 class="animate__animated animate__fadeInDown">
-Image Generator using Hugging Face API
+ImageGen using Huggingface
 </h1>
 <form id="generate-form" class="mb-5">
 <div class="form-group animate__animated animate__fadeInLeft">
@@ -209,7 +209,7 @@ required>
 </div>
 <div class="form-group animate__animated animate__fadeInRight">
 <label for="num_images">
-Select Number of Images
+Select No. of Images
 </label>
 <input
 type="number"
@@ -267,7 +267,7 @@ $(document).ready(function() {
             fetch("https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-2-1", {
                 method: "POST",
                 headers: {
-                    "Authorization": "Bearer HUGGINGFACE_FULL_TOKEN_HERE" // pls dnt repalce the word Bearer replace from "HUGG......HERE"
+                    "Authorization": "Bearer 73RAVwopBNK5nKXHpFr1dpqM66WVHQePMGBKC4uZUSdaXOcXmckf3HyGRjkA" // pls dnt repalce the word Bearer replace from "HUGG......HERE"
                 },
                 body: JSON.stringify({ "inputs": prompt })
             })
